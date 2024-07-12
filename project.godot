@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="TestGame"
+run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Player="*res://Player.cs"
+Mob="*res://Mob.cs"
 
 [display]
 
