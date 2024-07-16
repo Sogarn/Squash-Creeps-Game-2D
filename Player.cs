@@ -39,14 +39,14 @@ public partial class Player : Area2D
 			velocity.Y -= 1;
 		}
 
-		var animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		var animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
 		if (velocity.Length() > 0){
 			velocity = velocity.Normalized() * Speed;
-			animatedSprite2D.Play();
+			animatedSprite.Play();
 		}
 		else{
-			animatedSprite2D.Stop();
+			animatedSprite.Stop();
 		}
 
 		Position += velocity * (float)delta;
@@ -58,14 +58,14 @@ public partial class Player : Area2D
 
 		if (velocity.X != 0){
 			// Set walking animation to left-right and flip horizontal if going backwards
-			animatedSprite2D.Animation = "walk";
-			animatedSprite2D.FlipV = false;
-			animatedSprite2D.FlipH = velocity.X < 0;
+			animatedSprite.Animation = "walk";
+			animatedSprite.FlipV = false;
+			animatedSprite.FlipH = velocity.X < 0;
 		}
 		else if (velocity.Y != 0){
 			// Set walking animation to up-down and flip vertical if going up
-			animatedSprite2D.Animation = "up";
-			animatedSprite2D.FlipV = velocity.Y > 0;
+			animatedSprite.Animation = "up";
+			animatedSprite.FlipV = velocity.Y > 0;
 		}
 	}
 
