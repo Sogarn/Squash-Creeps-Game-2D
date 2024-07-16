@@ -21,6 +21,8 @@ public partial class Main : Node
 	// Game over on hit
 	private void GameOver()
 	{
+		GetNode<AudioStreamPlayer>("Music").Stop();
+		GetNode<AudioStreamPlayer>("DeathSound").Play();
 		GetNode<Timer>("MobTimer").Stop();
 		GetNode<Timer>("ScoreTimer").Stop();
 		GetNode<HUD>("HUD").ShowGameOver();
@@ -29,6 +31,12 @@ public partial class Main : Node
 	// New game settings
 	public void NewGame()
 	{
+		// Remove lingering mobs
+		GetTree().CallGroup("mobs", Node.MethodName.QueueFree);
+
+		// Add music
+		GetNode<AudioStreamPlayer>("Music").Play();
+
 		_score = 0;
 
 		var player = GetNode<Player>("Player");
